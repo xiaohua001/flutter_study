@@ -16,7 +16,7 @@ final routes = {
   '/search': (context, {arguments}) => SearchPage(arguments: arguments),
 };
 
-//固定写法
+//固定写法 
 // ignore: top_level_function_literal_block
 var onGenerateRoute = (RouteSettings settings) {
   // 统一处理
