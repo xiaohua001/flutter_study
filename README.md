@@ -1,6 +1,6 @@
 # flutter170
 
-A new Flutter project.
+版本是1.7.0稳定版，每个文件夹的示例都可以复制下来 直接在 main.dart中运行，注意部分页面的路径问题
 
 ## Getting Started
 
