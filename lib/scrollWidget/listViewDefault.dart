@@ -57,7 +57,7 @@ class ListView2 extends StatelessWidget {
           color: Colors.orange,
           child: ListView(
             children: <Widget>[
-              Image.network("https://www.itying.com/images/flutter/1.png"),
+              Image.network("https://imagepphcloud.thepaper.cn/pph/image/107/41/635.jpg"),
               Text('我是一个文本2')
             ],
           ),

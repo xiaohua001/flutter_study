@@ -12,7 +12,6 @@ import '../pages/user/RegisterThird.dart';
 import '../pages/topTabs/AppBarDemo.dart';
 import '../pages/topTabs/TopBar.dart';
 import '../pages/topTabs/TabBarController.dart';
-// import '../layoutWidget/drawer.dart';
 
 
 //配置路由
@@ -30,7 +29,7 @@ final routes = {
    '/appBarDemo':(context)=>AppBarDemoPage(),    
    '/topBar':(context)=>TopBarPage(),    
   '/tabBarController':(context)=>TabBarControllerPage(),    
-  // '/drawer':(context)=>Drawer(),    
+
    
 
 };
