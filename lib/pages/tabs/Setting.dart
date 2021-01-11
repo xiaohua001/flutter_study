@@ -12,17 +12,30 @@ class _SettingPageState extends State<SettingPage> {
     return ListView(
       children: <Widget>[
         ListTile(
-          title: Text("我是一个文本"),
+          title: Text("当前演示一下替换路由和返回根路由"),
         ),
          ListTile(
-          title: Text("我是一个文本"),
+          title: Text("测试"),
         ),
          ListTile(
-          title: Text("我是一个文本"),
+          title: Text("测试"),
         ),
          ListTile(
-          title: Text("我是一个文本"),
-        )
+          title: Text("测试4"),
+        ),
+                
+        RaisedButton(
+          child: Text("跳转到登录页面"),
+          onPressed: (){
+              Navigator.pushNamed(context, '/login');
+          },
+        ),
+        RaisedButton(
+          child: Text("跳转到注册页面"),
+          onPressed: (){
+             Navigator.pushNamed(context, '/registerFirst');
+          },
+        ),
       ],
     );
   }

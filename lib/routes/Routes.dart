@@ -5,6 +5,15 @@ import '../pages/tabs/Form.dart';
 import '../pages/tabs/Search.dart';
 import '../pages/tabs/Product.dart';
 import '../pages/tabs/ProductInfo.dart';
+import '../pages/user/Login.dart';
+import '../pages/user/RegisterFirst.dart';
+import '../pages/user/RegisterSecond.dart';
+import '../pages/user/RegisterThird.dart';
+import '../pages/topTabs/AppBarDemo.dart';
+import '../pages/topTabs/TopBar.dart';
+import '../pages/topTabs/TabBarController.dart';
+// import '../layoutWidget/drawer.dart';
+
 
 //配置路由
 final routes = {
@@ -14,9 +23,19 @@ final routes = {
   '/productinfo': (context, {arguments}) =>
       ProductInfoPage(arguments: arguments),
   '/search': (context, {arguments}) => SearchPage(arguments: arguments),
+  '/login': (context) => LoginPage(),
+  '/registerFirst': (context) => RegisterFirstPage(),
+  '/registerSecond': (context) => RegisterSecondPage(),
+  '/registerThird': (context) => RegisterThirdPage(),
+   '/appBarDemo':(context)=>AppBarDemoPage(),    
+   '/topBar':(context)=>TopBarPage(),    
+  '/tabBarController':(context)=>TabBarControllerPage(),    
+  // '/drawer':(context)=>Drawer(),    
+   
+
 };
 
-//固定写法 
+//固定写法
 // ignore: top_level_function_literal_block
 var onGenerateRoute = (RouteSettings settings) {
   // 统一处理

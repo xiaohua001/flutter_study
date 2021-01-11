@@ -28,7 +28,8 @@ class _CategoryPageState extends State<CategoryPage> {
             //   return FormPage(title:'我是跳转传值');
             // } ));
 
-                Navigator.pushNamed(context, '/form');            
+              Navigator.pushNamed(context, '/form');        
+    
           },
         )
       ],
