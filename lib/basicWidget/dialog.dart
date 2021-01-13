@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import './components/MyDialog.dart';
 
 
 void main() => runApp(MyApp());
@@ -179,22 +178,6 @@ class _DialogPageState extends State<DialogPage> {
                 child: Text('toast-fluttertoast第三方库'),
                 onPressed: _toast,
               ),
-              RaisedButton(
-              child: Text('显示自定义Dialog'),
-              onPressed: (){
-                   print("显示自定义组件");
-
-                  showDialog(
-                    context: context,
-                    builder: (context){
-                      return MyDialog(
-                        title:"关于我们",
-                        content:"这是内容"
-                      );
-                    }
-                  );
-              },
-            )
               // fluttertoast
           ],
         ),
