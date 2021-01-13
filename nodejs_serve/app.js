@@ -27,7 +27,7 @@ app.all('*', function(req, res, next) {
 
 app.get('/',function(req,res){
 
-	res.send('首页');
+	 res.send('首页');
 
 })
 
@@ -47,8 +47,12 @@ app.get('/news',function(req,res){
 	res.jsonp({"msg":'这是新闻数据'});
 
 })
+app.get('/userList',function(req,res){
+
+	res.send({"result":[{"name":"张三","age":12},{"name":"李四","age":13},{"name":"王五","age":14}]});
+
+})
 
 
-
-
-app.listen(3000,'127.0.0.1');
+ app.listen(3000,'127.0.0.1');
+//app.listen(3000,'0.0.0.0');

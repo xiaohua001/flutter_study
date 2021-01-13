@@ -29,6 +29,7 @@ class _HttpDemoState extends State<HttpDemo> {
   @override
   void initState() {
     super.initState();
+    this._getData();
   }
   _getData() async{
     // var apiUrl="http://lcb.com/api/userList";
@@ -47,37 +48,21 @@ class _HttpDemoState extends State<HttpDemo> {
     }
   }
 
-    _postData() async{
-    var apiUrl="http://10.0.2.2:3000/dologin";
-    var result=await http.post(apiUrl, body: {'username': '张三', 'age': '20'});
-    if(result.statusCode==200){
-      print(json.decode(result.body));      
-    }else{
-      print(result.statusCode);
-    }
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("请求数据Demo"),
       ),
-        body: ListView(
-        children: [
-            Text('${this._list}'),
-            RaisedButton(
-              child: Text('get请求数据'),
-              onPressed:_getData,
-            ),
-             SizedBox(height: 20),
-             RaisedButton(
-              child: Text('Post提交数据'),
-              onPressed:_postData,
-            ),
-        ],
-      ),
+      body: this._list.length>0?ListView.builder(
+        itemCount:this._list.length ,
+        itemBuilder: (context,index){
+            return ListTile(
+              title: Text("${this._list[index]["name"]}------${this._list[index]["age"]}"),
+            );  
+        },
+      ):
+      Text("加载中...")
     );
   }
 }
