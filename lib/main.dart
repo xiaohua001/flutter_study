@@ -1,6 +1,4 @@
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
@@ -35,21 +33,13 @@ class _HttpDemoState extends State<HttpDemo> {
   _getData() async {
 
     try {
-    var apiUrl="http://10.0.2.2:3000/userList";
+      var apiUrl="http://0.0.0.0:3000/userList"; // mac 网络环境
+      // var apiUrl="http://10.0.2.2:3000/userList"; // win 
+       // var apiUrl="http://192.168.1.192:3000/userList"; 
     Response result=await Dio().get(apiUrl);
-       print(result );
-      
-      // Map<String, int> user = json.decode(result);
-
-
-
-      // print(result.data);
-      // print(result.data is Map);
-      // setState(() {
-      //   //this._list=json.decode(result);
-      //   this._list = result.data;
-      // });
-      // print(this._list);
+      setState(() {
+        this._list = result.data['result'];
+      });
     } catch (e) {
       print(e);
     }
@@ -60,20 +50,15 @@ class _HttpDemoState extends State<HttpDemo> {
       appBar: AppBar(
         title: Text("dio请求数据Demo"),
       ),
-      // body: this._list.length>0?ListView.builder(
-      //   itemCount:this._list.length ,
-      //   itemBuilder: (context,index){
-      //       return ListTile(
-      //        title: Text("${this._list[index]["name"]}------${this._list[index]["age"]}"),
-      //         //title: Text("222"),
-
-      //       );  
-      //   },
-      // ):
-      // Text("加载中...")
-
-
-      body: Text('xxxx'),
+      body: this._list.length>0?ListView.builder(
+        itemCount:this._list.length ,
+        itemBuilder: (context,index){
+            return ListTile(
+             title: Text("${this._list[index]["name"]}------${this._list[index]["age"]}"),
+            );  
+        },
+      ):
+      Text("加载中...")
     );
   }
 }
