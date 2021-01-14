@@ -1,9 +1,7 @@
-import 'dart:convert';
+// import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-
-
+import 'package:dio/dio.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,41 +21,44 @@ class HttpDemo extends StatefulWidget {
 }
 
 class _HttpDemoState extends State<HttpDemo> {
-
-  List _list=[];
+  List _list = [];
 
   @override
   void initState() {
     super.initState();
     this._getData();
-  }
-  _getData() async{
-    // var apiUrl="http://lcb.com/api/userList";
-        // var apiUrl="http://127.0.0.1:3000/userList";  //肯定会报错
-        // var apiUrl ="http://192.168.0.109:3000/userList" //模拟器不在同一网段的时候也会报错
-    var apiUrl="http://10.0.2.2:3000/userList"; // 模拟器默认把端口会映射成 10.0.2.2
-    var result=await http.get(apiUrl);
-    if(result.statusCode==200){
-      print(result.body);
-      setState(() {
-       this._list=json.decode(result.body)["result"];
-      });
-    }else{
-      print("失败${result.statusCode}");
-    }
+                  //  this._list=[{"name":'xxx',"age":12},{"name":'xxx1',"age":23}];
+
   }
 
+  _getData() async {
+
+    try {
+    var apiUrl="http://10.0.2.2:3000/userList";
+    Response result=await Dio().get(apiUrl);
+      print(result);
+      print(result.data);
+      setState(() {
+        //this._list=json.decode(result);
+      });
+      print(this._list);
+    } catch (e) {
+      print(e);
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+        return Scaffold(
       appBar: AppBar(
-        title: Text("http_get请求数据Demo"),
+        title: Text("dio请求数据Demo"),
       ),
       body: this._list.length>0?ListView.builder(
         itemCount:this._list.length ,
         itemBuilder: (context,index){
             return ListTile(
-              title: Text("${this._list[index]["name"]}------${this._list[index]["age"]}"),
+             title: Text("${this._list[index]["name"]}------${this._list[index]["age"]}"),
+              //title: Text("222"),
+
             );  
         },
       ):
