@@ -28,16 +28,16 @@ class _DevicePageState extends State<DevicePage> {
   _getDevice() async{
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    print('设备号 ${androidInfo.androidId}');  // e.g. "Moto G (4)"
+    print('设备号 ${androidInfo.androidId}');  
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Flutter Native Device演示"),
+        title: Text("Device演示"),
       ),
-      body: Text("看控制台 信息已经打印到控制台了"),
+      body: Text("打印到控制台"),
     );
   }
 }
