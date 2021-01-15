@@ -33,8 +33,8 @@ class _HttpDemoState extends State<HttpDemo> {
   _getData() async {
 
     try {
-      var apiUrl="http://0.0.0.0:3000/userList"; // mac 网络环境
-      // var apiUrl="http://10.0.2.2:3000/userList"; // win 
+     // var apiUrl="http://0.0.0.0:3000/userList"; // mac 网络环境
+       var apiUrl="http://10.0.2.2:3000/userList"; // win 
        // var apiUrl="http://192.168.1.192:3000/userList"; 
     Response result=await Dio().get(apiUrl);
       setState(() {
