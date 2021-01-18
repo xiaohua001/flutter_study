@@ -34,7 +34,15 @@ class _StoragePageState extends State<StoragePage> {
       sp.setString("username", "张三111");
 
        sp.setString("age", "26");
-       
+
+
+      // 存储不同类型
+      // sp.setString(key, value);
+      // sp.setBool(key, value);
+      // sp.setDouble(key, value);
+      // sp.setInt(key, value);
+      // sp.setStringList(key, value);
+            
   }
   _getData() async{
       SharedPreferences sp=await SharedPreferences.getInstance();

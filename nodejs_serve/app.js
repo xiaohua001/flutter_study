@@ -4,11 +4,11 @@
 var express = require('express');
 
 var app=express();
-
+var router=express.Router();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+var multiparty = require('multiparty');
 /*express允许跨域*/
 
 app.all('*', function(req, res, next) {
@@ -51,7 +51,26 @@ app.get('/userList',function(req,res){
 
      res.send({"result":[{"name":"张三","age":12},{"name":"李四","age":13},{"name":"王五","age":14}]});
 })
+//给编辑器提供的上传图片的接口
+router.post('/imgupload',function(req,res){
+    
+    console.log('imgupload');
 
+    var form = new multiparty.Form();
+    form.uploadDir='public/upload'  /*设置图片上传的路径*/
+
+    form.parse(req, function(err, fields, files) {
+
+		console.log(files); //文件
+
+		console.log(fields); //post数据
+
+        var path="/"+files.file[0].path;
+
+        res.json({"success":"ok","path":path})  /*给编辑器返回地址信息*/
+
+    });
+})
 
  app.listen(3000,'127.0.0.1');
 //app.listen(3000,'0.0.0.0');
