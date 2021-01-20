@@ -9,7 +9,8 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
       appBar: AppBar(title: Text('FlutterDemo22')),
        body: FlexLayoutTestRoute(),
-    ));
+    )
+    );
   }
 }
 
