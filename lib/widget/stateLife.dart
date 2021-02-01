@@ -9,38 +9,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+        title: 'Flutter Demo',
+        theme: ThemeData(
 
-        primarySwatch: Colors.blue,
+          primarySwatch: Colors.blue,
 
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: CounterWidget()
-       //    home: Text('data')
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: CounterWidget()
+      //    home: Text('data')
     );
   }
 }
 
 class CounterWidget extends StatefulWidget {
-  const CounterWidget({
-    Key key,
-    this.initValue: 0
-  });
 
-  final int initValue;
+  CounterWidget(){
+    print(1);
+  }
+  final int initValue=0;
 
   @override
-  _CounterWidgetState createState() => new _CounterWidgetState();
+  _CounterWidgetState createState() {
+    print(2);
+    return new _CounterWidgetState();
+  }
 }
 
-class _CounterWidgetState extends State<CounterWidget> {  
+class _CounterWidgetState extends State<CounterWidget> {
+  _CounterWidgetState(){
+    print(3);
+
+  }
+
   int _counter;
 
   @override
   void initState() {
     super.initState();
-    //初始化状态  
+    //初始化状态
     _counter=widget.initValue;
     print("initState");
   }
