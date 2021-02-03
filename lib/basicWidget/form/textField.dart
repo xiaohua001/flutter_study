@@ -62,6 +62,7 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
                     this._password=value; 
                  });
               },
+              keyboardType:TextInputType.number
               
             ),
             TextField(

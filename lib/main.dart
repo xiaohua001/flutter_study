@@ -1,91 +1,92 @@
 import 'package:flutter/material.dart';
-import 'package:web_socket_channel/io.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(title: Text('FlutterDemo22')),
-      body: WebSocketRoute(),
-    ));
+    return MaterialApp(home: TextFieldTestRoute());
   }
 }
 
-
-class WebSocketRoute extends StatefulWidget {
+class TextFieldTestRoute extends StatefulWidget {
   @override
-  _WebSocketRouteState createState() => new _WebSocketRouteState();
+  _FormTestRouteState createState() => new _FormTestRouteState();
 }
 
-class _WebSocketRouteState extends State<WebSocketRoute> {
-  TextEditingController _controller = new TextEditingController();
-  IOWebSocketChannel channel;
-  String _text = "";
-
-
-  @override
-  void initState() {
-    //创建websocket连接
-    channel = new IOWebSocketChannel.connect('ws://echo.websocket.org');
-  }
+class _FormTestRouteState extends State<TextFieldTestRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("WebSocket(内容回显)"),
-      ),
-      body: new Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: new Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            new Form(
-              child: new TextFormField(
-                controller: _controller,
-                decoration: new InputDecoration(labelText: 'Send a message'),
-              ),
-            ),
-            new StreamBuilder(
-              stream: channel.stream,
-              builder: (context, snapshot) {
-                //网络不通会走到这
-                if (snapshot.hasError) {
-                  _text = "网络不通...";
-                } else if (snapshot.hasData) {
-                  _text = snapshot.data;
-                }
-                return new Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: new Text(_text),
-                );
-              },
-            )
-          ],
+    return Scaffold(
+        appBar: AppBar(
+          title:Text("Form Test"),
         ),
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _sendMessage,
-        tooltip: 'Send message',
-        child: new Icon(Icons.send),
+        body: FocusTestRoute()
+    );
+  }
+}
+
+class FocusTestRoute extends StatefulWidget {
+  @override
+  _FocusTestRouteState createState() => new _FocusTestRouteState();
+}
+
+class _FocusTestRouteState extends State<FocusTestRoute> {
+
+  TextEditingController _usernameController = new TextEditingController();
+  var _password;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+
+          TextField(
+              autofocus: true,
+              decoration: InputDecoration(
+                  labelText: "用户名"
+              ),
+              controller: _usernameController
+          ),
+          TextField(
+              obscureText: true,
+              decoration: InputDecoration(
+                  labelText: "密码"
+              ),
+              onChanged: (value){
+                setState(() {
+                  this._password=value;
+                });
+              },
+          ),
+          TextField(
+            maxLines: 4,
+            decoration:InputDecoration(
+                hintText:"多行文本框",
+                border: OutlineInputBorder()
+            ) ,
+          ),
+          Builder(builder: (ctx) {
+            return Column(
+              children: <Widget>[
+                RaisedButton(
+                  child: Text("获取输入框的内容"),
+                  onPressed: () {
+                    print(_usernameController.text);
+                    print(this._password);
+                  },
+                ),
+              ],
+            );
+          },
+          ),
+        ],
       ),
     );
   }
 
-  void _sendMessage() {
-    if (_controller.text.isNotEmpty) {
-      channel.sink.add(_controller.text);
-    }
-  }
-
-  @override
-  void dispose() {
-    channel.sink.close();
-    super.dispose();
-  }
 }
