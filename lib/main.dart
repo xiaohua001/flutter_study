@@ -1,92 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: TextFieldTestRoute());
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(title: Text('FlutterDemo22')),
+          body: _Recognizer(),
+        ));
   }
 }
 
-class TextFieldTestRoute extends StatefulWidget {
+class _Recognizer extends StatefulWidget {
   @override
-  _FormTestRouteState createState() => new _FormTestRouteState();
+  _GestureRecognizerTestRouteState createState() => new _GestureRecognizerTestRouteState();
 }
 
-class _FormTestRouteState extends State<TextFieldTestRoute> {
+class _GestureRecognizerTestRouteState
+    extends State<_Recognizer> {
+  TapGestureRecognizer _tapGestureRecognizer = new TapGestureRecognizer();
+  bool _toggle = false; //变色开关
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title:Text("Form Test"),
-        ),
-        body: FocusTestRoute()
-    );
+  void dispose() {
+    //用到GestureRecognizer的话一定要调用其dispose方法释放资源
+    _tapGestureRecognizer.dispose();
+    super.dispose();
   }
-}
-
-class FocusTestRoute extends StatefulWidget {
-  @override
-  _FocusTestRouteState createState() => new _FocusTestRouteState();
-}
-
-class _FocusTestRouteState extends State<FocusTestRoute> {
-
-  TextEditingController _usernameController = new TextEditingController();
-  var _password;
-
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-
-          TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                  labelText: "用户名"
-              ),
-              controller: _usernameController
-          ),
-          TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: "密码"
-              ),
-              onChanged: (value){
-                setState(() {
-                  this._password=value;
-                });
-              },
-          ),
-          TextField(
-            maxLines: 4,
-            decoration:InputDecoration(
-                hintText:"多行文本框",
-                border: OutlineInputBorder()
-            ) ,
-          ),
-          Builder(builder: (ctx) {
-            return Column(
-              children: <Widget>[
-                RaisedButton(
-                  child: Text("获取输入框的内容"),
-                  onPressed: () {
-                    print(_usernameController.text);
-                    print(this._password);
-                  },
+    return Center(
+      child: Text.rich(
+          TextSpan(
+              children: [
+                TextSpan(text: "你好世界"),
+                TextSpan(
+                  text: "点我变色",
+                  style: TextStyle(
+                      fontSize: 30.0,
+                      color: _toggle ? Colors.blue : Colors.red
+                  ),
+                  recognizer: _tapGestureRecognizer
+                    ..onTap = () {
+                      setState(() {
+                        _toggle = !_toggle;
+                      });
+                    },
                 ),
-              ],
-            );
-          },
-          ),
-        ],
+                TextSpan(text: "你好世界"),
+              ]
+          )
       ),
     );
   }
-
 }

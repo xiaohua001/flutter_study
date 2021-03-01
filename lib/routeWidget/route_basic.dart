@@ -54,24 +54,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 // );
 
                 //基本路由导航传参
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext context) {
-                  return TipRoute(text: "表单"); //传值
-                }));
+                // Navigator.of(context)
+                //     .push(MaterialPageRoute(builder: (BuildContext context) {
+                //   return TipRoute(text: "表单"); //传值
+                // }));
 
-                //   var result = await Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) {
-                //         return TipRoute(
-                //           // 参数
-                //           text: "我是提示xxxx",
-                //         );
-                //       },
-                //     ),
-                //   );
-                //  // 点击NewRoute的返回按钮能拿到值，系统自带返回按钮 无值
-                //   print("路由返回值: $result");
+                  var result = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return TipRoute(
+                          // 参数
+                          text: "我是提示xxxx",
+                        );
+                      },
+                    ),
+                  );
+                 // 点击NewRoute的返回按钮能拿到值，系统自带返回按钮 无值
+                  print("路由返回值: $result");
               },
             ),
           ],

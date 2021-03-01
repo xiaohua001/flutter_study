@@ -65,6 +65,7 @@ class _FocusTestRouteState extends State<FocusTestRoute> {
               keyboardType:TextInputType.number
               
             ),
+          SizedBox(height: 10,),
             TextField(
               maxLines: 4,
               decoration:InputDecoration(
